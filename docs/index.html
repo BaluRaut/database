@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn Database School — databases step-by-step</title>
+<meta name="description" content="Learn databases from the ground up with a real school management schema: 12 lessons with ELI5 analogies, diagrams and hands-on SQL labs, ending with Postgres in Docker and Kubernetes.">
+<style>
+  :root {
+    --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569;
+    --line: #e2e8f0; --accent: #0369a1; --ok: #16a34a; --blue: #2563eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0b1220; --card: #131c2e; --ink: #e2e8f0; --muted: #94a3b8; --line: #253349; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 28px 20px 60px; }
+  a { color: var(--blue); }
+  h1 { font-size: 2rem; line-height: 1.25; }
+  h2 { font-size: 1.4rem; margin: 44px 0 6px; }
+  .sub { color: var(--muted); max-width: 72ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 8px; }
+  .chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 14px; font-size: .85rem; color: var(--muted); }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 18px; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+  .step b { display: block; margin-bottom: 4px; }
+  .step .n { display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; align-items: center; justify-content: center; font-weight: 800; margin-bottom: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin-top: 16px; }
+  .lesson { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--c, var(--accent)); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+  .lesson .top { display: flex; align-items: center; gap: 10px; }
+  .lesson .num { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--c, var(--accent)); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: .9rem; }
+  .lesson h3 { font-size: 1.02rem; line-height: 1.3; }
+  .lesson .ana { color: var(--muted); font-size: .9rem; }
+  .lesson code { font-size: .78rem; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; align-self: flex-start; }
+  .lesson .soon { margin-top: auto; font-size: .8rem; color: var(--muted); font-style: italic; }
+  .callout { background: var(--card); border: 1px solid var(--line); border-left: 6px solid var(--ok); border-radius: 14px; padding: 18px 20px; margin-top: 16px; }
+  pre { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; overflow-x: auto; font-size: .88rem; margin-top: 12px; }
+  .btn { display: inline-block; background: var(--accent); color: #fff; border-radius: 10px; padding: 10px 18px; text-decoration: none; font-weight: 700; margin: 14px 10px 0 0; }
+  .btn.alt { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  footer { margin-top: 56px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); font-size: .88rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>🗄️ Learn Database School — databases step-by-step</h1>
+    <p class="sub">One real schema — a small school management system (students, classes, teachers,
+    marks) — used to teach every database idea with a job to do. Explained like you're five, with
+    school analogies, diagrams and hands-on SQL you can run in a terminal.</p>
+    <div class="chips">
+      <span class="chip">🐘 PostgreSQL</span><span class="chip">📝 SQL</span>
+      <span class="chip">🔖 Indexes</span><span class="chip">🔁 Transactions</span>
+      <span class="chip">🧾 Backups</span><span class="chip">☸️ Postgres on Kubernetes</span>
+    </div>
+  </header>
+
+  <section class="steps">
+    <div class="step"><span class="n">1</span><b>Start Postgres in one command</b>
+      No install — a Docker container with the sample school schema pre-loaded.</div>
+    <div class="step"><span class="n">2</span><b>Take the 12 lessons</b>
+      One idea per lesson: ELI5 story, analogy, diagram, What/Why/How, and queries to try.</div>
+    <div class="step"><span class="n">3</span><b>Run it for real</b>
+      Backups, replication, then Postgres on Kubernetes — tying into the Docker and Kubernetes schools.</div>
+  </section>
+
+  <h2>🎓 The 12 lessons</h2>
+  <p class="sub">Each lesson lives in <code>lessons/NN-topic/README.md</code> on the
+  <a href="https://github.com/BaluRaut/database">GitHub repo</a>. Lessons are being written —
+  cards become clickable as each one lands.</p>
+
+  <div class="grid">
+    <div class="lesson" style="--c:#0ea5e9"><div class="top"><span class="num">1</span><h3>📒 What is a database?</h3></div><span class="ana">A school register — tables, rows, columns; why not a spreadsheet.</span><code>01-what-is-a-database</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#0ea5e9"><div class="top"><span class="num">2</span><h3>☎️ SQL basics</h3></div><span class="ana">Asking the office clerk — SELECT, INSERT, UPDATE, DELETE.</span><code>02-sql-basics</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#0ea5e9"><div class="top"><span class="num">3</span><h3>🔗 Keys &amp; relationships</h3></div><span class="ana">Student ↔ class ↔ teacher — primary keys, foreign keys, JOINs.</span><code>03-keys-and-joins</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#2563eb"><div class="top"><span class="num">4</span><h3>✅ Data types &amp; constraints</h3></div><span class="ana">Form fields with rules — NOT NULL, UNIQUE, CHECK, defaults.</span><code>04-types-and-constraints</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#2563eb"><div class="top"><span class="num">5</span><h3>🔖 Indexes</h3></div><span class="ana">The index at the back of a book — why queries get fast (and writes slower).</span><code>05-indexes</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#2563eb"><div class="top"><span class="num">6</span><h3>🐷 Transactions &amp; ACID</h3></div><span class="ana">Moving money between two piggy banks — all or nothing.</span><code>06-transactions</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">7</span><h3>🗄️ Schema design &amp; normalization</h3></div><span class="ana">Tidy filing cabinets — say each fact once.</span><code>07-schema-design</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">8</span><h3>🗺️ Query plans &amp; EXPLAIN</h3></div><span class="ana">Reading the GPS route — how Postgres decides to run your query.</span><code>08-explain</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#7c3aed"><div class="top"><span class="num">9</span><h3>🧾 Backups &amp; restore</h3></div><span class="ana">Photocopies in the safe — pg_dump, restore drills, point-in-time recovery.</span><code>09-backups</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">10</span><h3>🧑‍🏫 Replication &amp; HA</h3></div><span class="ana">A substitute teacher on standby — primary, replicas, failover.</span><code>10-replication</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">11</span><h3>🍱 Postgres in Docker</h3></div><span class="ana">Database in a lunchbox — volumes, env vars, docker-compose.</span><code>11-postgres-docker</code><span class="soon">Coming soon</span></div>
+    <div class="lesson" style="--c:#ea580c"><div class="top"><span class="num">12</span><h3>☸️ Postgres on Kubernetes</h3></div><span class="ana">The school stays open after a move — StatefulSets, PVCs, Secrets.</span><code>12-postgres-kubernetes</code><span class="soon">Coming soon</span></div>
+  </div>
+
+  <h2>🚀 Quick start</h2>
+  <div class="callout">
+    Everything runs locally in Docker — nothing to install except Docker itself.
+<pre>docker run --name school-db -e POSTGRES_PASSWORD=school -p 5432:5432 -d postgres:16
+docker exec -it school-db psql -U postgres</pre>
+  </div>
+
+  <a class="btn" href="https://github.com/BaluRaut/database">Open the repo →</a>
+  <a class="btn alt" href="https://baluraut.github.io/learn-docker-school/">🍱 Docker school</a>
+  <a class="btn alt" href="https://baluraut.github.io/learn-kubernetes-school/">☸️ Kubernetes school</a>
+  <a class="btn alt" href="https://baluraut.github.io/learn-aws-school/">☁️ AWS school</a>
+
+  <footer>
+    Learn Database School · PostgreSQL · SQL · Docker · Kubernetes ·
+    <a href="https://github.com/BaluRaut/database">github.com/BaluRaut/database</a>
+  </footer>
+
+</div>
+</body>
+</html>
